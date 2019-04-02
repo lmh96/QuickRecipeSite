@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>Quick Recipes</title>
+    <style>
+        header {
+            height: 300px;
+            border-top: lightgray 1px solid;
+            top: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">QuickRecipes</div>
+        <p id="main-prompt">enter some ingredients and press the search button...</p>
+        <button id="ingredients-icon" class="material-icons">arrow_drop_down</button>
+
+        <div id="search-area">
+            <input id="search-bar">
+            <button id="add-icon" class="material-icons">add</button>
+            <button id="search-icon" class="material-icons">search</button>
+        </div>
+
+        <div id="ingredients-area">
+
+        </div>
+    </header>
+
+    <main>
+        <div id="prompt-div">
+            <p>...or scroll down for more options.</p>
+            <i id="prompt-arrow" class="material-icons">keyboard_arrow_down</i>
+        </div>
+
+        <div id="options-div">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum labore temporibus itaque odit similique
+                suscipit iusto, beatae veritatis quis. Ea repellat magni dolor saepe. Dolore quas earum deleniti quis
+                commodi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus nihil labore amet minus eaque unde
+                necessitatibus, nisi cupiditate suscipit asperiores illum facilis minima nulla distinctio sit? Ex magnam
+                eveniet commodi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, magni laudantium. Veritatis similique
+                modi vero, asperiores assumenda repellendus eius molestias delectus ad enim! Quam alias odit et magnam
+                vel reiciendis!
+            </p>
+        </div>
+
+        <div id="results-div">
+            <div class="result">
+                <img class="result-img">
+                <div class="result-preview">
+                    <div class="result-title">
+                        Test Recipe
+                    </div>
+                    <div class="result-preptime">
+                        Preptime: 60 minutes
+                    </div>
+                    <div class="result-warnings">
+                        Contains nuts
+                    </div>
+                    <div class="result-calories">
+                        Calories: 1000
+                    </div>
+                    <div class="result-details">
+                        <p>
+                            more stuff goes here
+                        </p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, provident! Atque, officiis
+                            minima sapiente assumenda iste dolor excepturi et voluptate debitis! Ipsa similique fuga
+                            corporis quas corrupti illo earum tenetur.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis illum sequi, fugiat nulla
+                            nobis distinctio assumenda! Ex asperiores sit quis facilis, officia aspernatur accusantium
+                            non cum ratione ea sunt ducimus!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Local Scripts-->
+    <script src="assets/js/style.js"></script>
+    <script src="assets/js/account.js"></script>
+    <script src="assets/js/content.js"></script>
+</body>
+
+</html>
