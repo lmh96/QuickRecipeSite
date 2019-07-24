@@ -17,11 +17,14 @@ main {
     top: calc(100% - 60px);
 }
 
-body {
+html {
     background: url("https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg");
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: 100%;
+    background-attachment: fixed;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 #logo {
@@ -169,6 +172,7 @@ body {
     background: lightgray;
     width: 50%;
     padding: 20px;
+    margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;

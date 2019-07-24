@@ -7,6 +7,11 @@ let mainPrompt = $("#main-prompt");
 let promptDiv = $("#prompt-div");
 
 let headerTop = header.offset().top;
+
+$(document).ready(function(){
+    $(this).scrollTop(0);
+});
+
 window.onscroll = function () {
     if (window.pageYOffset > headerTop) {
         if (header.css("position") === "absolute") {
@@ -90,51 +95,48 @@ $(document).on("click", ".result", function (e) {
 let ingredients = [];
 
 $("#search-bar").keyup(function(e) {
-    if(e.KeyCode === 13) {
+    let theKey = e.keyCode;
+    if(theKey === 13) {
         $("#search-icon").click();
     }
 });
 
 $("#search-icon").on("click", function() {
-    //CODE FROM PROJECT V1
 
-    // let content = $("#header-ingredients-area");
-    // let content2 = $("#results");
+    let search = $("#search-bar").val();
+    search = search.trim();
 
-    // content2.css("margin-top", (content.prop("scrollHeight") + 100) + "px");
+    if(typeof(search) === "undefined" || search === "") {
+        if(ingredients.length > 0) {
+            generateResults();
+        }
+    }
+    else {
+        let includes = false;
+        for(let i = 0; i < ingredients.length; i++) {
+            if(search === ingredients[i]) {
+                includes = true;
+                break;
+            }
+        }
 
-    // let search = $("#header-search-bar").val();
-    // search = search.trim();
+        if(includes) {
+            
+        }
+        else {
+            ingredients.push(search);
+            let btn = $("<button>");
 
-    // if (typeof (search) === "undefined" || search === "") {
+            btn.addClass("ingredient");
+            btn.text("X " + search);
 
-    // }
-    // else {
-    //     let includes = false;
-    //     for (var i = 0; i < ingredients.length; i++) {
-    //         if (search === ingredients[i]) {
-    //             includes = true;
-    //             break;
-    //         }
-    //     }
+            $("#search-bar").val("");
 
-    //     if (includes) {
+            $("#ingredients-area").append(btn);
+        }
 
-    //     }
-    //     else {
-    //         ingredients.push(search);
-
-    //         let btn = $("<button>");
-
-    //         btn.addClass("ingredient");
-    //         btn.text("X " + search);
-
-    //         $("#header-search-bar").val("");
-
-    //         $("#header-ingredients-area").append(btn);
-    //     }
-    // }
-    // generateResults();
+        generateResults();
+    }
 });
 
 $("#add-icon").on("click", function() {
@@ -174,3 +176,82 @@ $(document).on("click", ".ingredient", function() {
 
     $(this).remove();
 });
+
+function createRow(img, title, preptime, desc, health, cals, contains) {
+    let searchResult = $("<div>");
+    let resultImg = $("<img>");
+    let resultPreview = $("<div>");
+    let resultTitle = $("<h1>");
+    let resultPreptime = $("<h2>");
+    let resultWarnings = $("<h3>");
+    let resultCalories = $("<h3>");
+    let resultDetails = $("<div>");
+    let resultContains = $("<div>");
+    let resultDescription = $("<pre>");
+    let favButton = $("<button>");
+    let linkButton = $("<button>");
+
+    searchResult.addClass("result");
+    resultImg.addClass("result-img");
+    resultPreview.addClass("result-preview");
+    resultTitle.addClass("result-title");
+    resultPreptime.addClass("result-preptime");
+    resultWarnings.addClass("result-warnings");
+    resultCalories.addClass("result-calories");
+    resultContains.addClass("result-contains");
+    resultDetails.addClass("result-details");
+    resultDescription.addClass("result-description");
+    resultDescription.attr("white-space", "pre-wrap;")
+
+    // add class to button
+    favButton.text("favorite_border");
+    favButton.addClass("favorite-button material-icons");
+    favButton.attr("value", title);
+    // add button to page
+    linkButton.text("See Steps");
+    linkButton.addClass("link-button");
+    linkButton.attr("value", title);
+
+
+    resultImg.attr("src", img);
+    searchResult.append(resultImg);
+
+    resultTitle.text(title);
+    resultPreview.append(resultTitle);
+
+    if (preptime === "0" || preptime === 0) {
+        resultPreptime.text("Preptime: Not available");
+    }
+    else {
+        resultPreptime.text("Preptime: " + preptime + " minutes");
+    }
+    resultPreview.append(resultPreptime);
+
+    resultWarnings.text("Contains: " + health);
+    resultPreview.append(resultWarnings);
+
+    resultCalories.text("Calories: " + cals);
+    resultPreview.append(resultCalories);
+
+    for (var i = 0; i < desc.length; i++) {
+        resultDescription.append(desc[i] + "\n");
+    }
+    resultDetails.append(resultDescription);
+
+    resultPreview.append(resultDetails);
+
+    searchResult.append(resultPreview);
+    searchResult.append(linkButton);
+    searchResult.append(favButton);
+    $("#results-div").append(searchResult);
+}
+
+function getIngredients() {
+    let ret = "";
+    for (var i = 0; i < ingredients.length; i++) {
+        ret += " " + ingredients[i];
+    }
+
+    ret = ret.trim();
+    return ret;
+}
